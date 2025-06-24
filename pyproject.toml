@@ -1,6 +1,6 @@
 [project]
 name = "freemobile"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
 ]
 requires-python = ">=3.10"
@@ -29,7 +29,7 @@ Homepage = "https://github.com/rambobinator/freemobile-SMS-notifications"
 Documentation = "https://github.com/rambobinator/freemobile-SMS-notifications"
 Repository = "https://github.com/rambobinator/freemobile-SMS-notifications"
 "Bug Tracker" = "https://github.com/rambobinator/freemobile-SMS-notifications/issues"
-Changelog = "https://github.com/rambobinator/freemobile-SMS-notifications/commits/master/"
+Changelog = "https://github.com/rambobinator/freemobile-SMS-notifications/releases"
 
 [project.scripts]
 freemobile = "sms.cli:run"
