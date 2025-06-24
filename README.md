@@ -46,5 +46,5 @@ or
 
 ## Limitations:
 
-- There seems to be a limit of 1000 characters per sending that I will fix in a future release (I never reach this limit in my personal usage ...).
+- ~~There seems to be a limit of 1000 characters per sending that I will fix in a future release (I never reach this limit in my personal usage ...).~~
 - I haven't reached the rate limit quota yet, but I've implemented a retry mechanism that should work for most.
