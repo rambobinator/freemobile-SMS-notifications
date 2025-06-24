@@ -16,6 +16,7 @@ FREEMOBILE_SMS_NOTIFICATION_RESPONSES = {
 }
 FREEMOBILE_SMS_NOTIFICATION_DEFAULT_TIMEOUT = 10
 FREEMOBILE_SMS_NOTIFICATION_DEFAULT_RETRIES = 3
+FREEMOBILE_SMS_NOTIFICATION_DEFAULT_CHUNKS = 999
 
 
 class FreeMobileSMSNotificationException(Exception):
@@ -28,23 +29,27 @@ def send(
     message: str,
     timeout: int = FREEMOBILE_SMS_NOTIFICATION_DEFAULT_TIMEOUT,
     retries: int = FREEMOBILE_SMS_NOTIFICATION_DEFAULT_RETRIES,
+    chunks: int = FREEMOBILE_SMS_NOTIFICATION_DEFAULT_CHUNKS,
 ) -> None:
-    query = parse.urlencode({"user": user_id, "pass": api_key, "msg": message})
-    for retry in range(retries):
-        try:
-            with request.urlopen(
-                f"{FREEMOBILE_SMS_NOTIFICATION_URL}?{query}", timeout=timeout
-            ) as response:
-                break
-        except error.HTTPError as e:
-            match e.code:
-                case 400 | 403 | 500:
-                    raise FreeMobileSMSNotificationException(
-                        FREEMOBILE_SMS_NOTIFICATION_RESPONSES[e.code]
-                    )
-                case 402:
-                    sleep(retry**2)
-                    continue
+    i = 0
+    while tmp := message[i : chunks + i]:
+        query = parse.urlencode({"user": user_id, "pass": api_key, "msg": message})
+        for retry in range(retries):
+            try:
+                with request.urlopen(
+                    f"{FREEMOBILE_SMS_NOTIFICATION_URL}?{query}", timeout=timeout
+                ) as response:
+                    break
+            except error.HTTPError as e:
+                match e.code:
+                    case 400 | 403 | 500:
+                        raise FreeMobileSMSNotificationException(
+                            FREEMOBILE_SMS_NOTIFICATION_RESPONSES[e.code]
+                        )
+                    case 402:
+                        sleep(retry**2)
+                        continue
+        i += chunks
 
 
 __all__ = ["send", "FreeMobileSMSNotificationException"]
