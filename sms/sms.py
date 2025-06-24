@@ -33,12 +33,12 @@ def send(
 ) -> None:
     i = 0
     while tmp := message[i : chunks + i]:
-        query = parse.urlencode({"user": user_id, "pass": api_key, "msg": message})
+        query = parse.urlencode({"user": user_id, "pass": api_key, "msg": tmp})
         for retry in range(retries):
             try:
                 with request.urlopen(
                     f"{FREEMOBILE_SMS_NOTIFICATION_URL}?{query}", timeout=timeout
-                ) as response:
+                ):
                     break
             except error.HTTPError as e:
                 match e.code:
