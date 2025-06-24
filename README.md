@@ -13,8 +13,8 @@ Copy your user_id and api_key in your environnement like so:
 
 ## uv
 
-If you already are an [uv](https://docs.astral.sh/uv/guides/install-python/) fan, simply type the following in your terminal:
+If you already are an [uv](https://docs.astral.sh/uv/guides/install-python/) user and don't want to install this package, simply type the following in your terminal:
 
-`uvx --from git+https://github.com/rambobinator/freemobile-SMS-notifications@rework freemobile "hello me \!"`
+`uvx --from git+https://github.com/rambobinator/freemobile-SMS-notifications freemobile "hello me \!"`
 
 You should receive an ... sms there it is :)
