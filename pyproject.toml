@@ -17,7 +17,11 @@ license-files = ["LICEN[CS]E.*"]
 keywords = ["sms", "free", "mobile", "freemobile", "notification"]
 classifiers = [
     "Intended Audience :: Developers",
-    "Programming Language :: Python :: 3.10"
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 
 [project.urls]
@@ -28,4 +32,4 @@ Repository = "https://github.com/rambobinator/freemobile-SMS-notifications"
 Changelog = "https://github.com/rambobinator/freemobile-SMS-notifications/commits/master/"
 
 [project.scripts]
-freemobile = "sms:__main__"
+freemobile = "sms.cli:run"
